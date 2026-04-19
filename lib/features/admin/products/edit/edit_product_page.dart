@@ -26,6 +26,15 @@ class AdminEditProductPage extends GetView<AdminEditProductControllerImp> {
                   ),
                 ),
                 SizedBox(height: 20),
+                TextField(
+                  controller: controller.priceController,
+                  decoration: InputDecoration(
+                    labelText: 'السعر',
+                    border: OutlineInputBorder(),
+                  ),
+                  keyboardType: TextInputType.number,
+                ),
+                SizedBox(height: 20),
                 InkWell(
                   onTap: () {
                     Get.bottomSheet(

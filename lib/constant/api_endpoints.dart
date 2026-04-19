@@ -11,6 +11,7 @@ class ApiEndpoints {
   static const String products = '/products';
   static const String categories = '/categories';
   static const String orders = '/orders';
+  static const String dashboard = '/dashboard';
 
   static String productById(int id) => '/products/show/$id';
   static String productUpdate(int id) => '/products/update/$id';
@@ -25,4 +26,5 @@ class ApiEndpoints {
   static String orderById(int id) => '/orders/show/$id';
   static String updateOrderStatus(int id) => '/orders/update-status/$id';
   static const String storeOrder = '/orders/store';
+  static String orderDelete(int id) => '/orders/delete/$id';
 }

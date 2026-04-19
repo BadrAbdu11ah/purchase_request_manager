@@ -18,7 +18,8 @@ class CustomCardProduct extends StatelessWidget {
     final unit = (product.unit == null || product.unit!.trim().isEmpty)
         ? 'غير محدد'
         : product.unit!;
-    final minLimit = (product.minLimit == null || product.minLimit!.trim().isEmpty)
+    final minLimit =
+        (product.minLimit == null || product.minLimit!.trim().isEmpty)
         ? 'غير محدد'
         : product.minLimit!;
 
@@ -31,7 +32,7 @@ class CustomCardProduct extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('ID: ${product.id}'),
+              Text('السعر: ${product.price}'),
               Text('الصنف: $categoryName'),
               Text('الوحدة: $unit'),
               Text('الحد الأدنى: $minLimit'),

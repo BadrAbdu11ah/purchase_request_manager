@@ -7,6 +7,11 @@ import 'package:purchase_request_manager/model/category_model.dart';
 import 'package:purchase_request_manager/services/api_service.dart';
 
 abstract class AdminCategoriesController extends GetxController {
+  final CategoriesData categoriesData = CategoriesData(Get.find<ApiService>());
+  StateRequest stateRequest = StateRequest.none;
+
+  List<CategoryModel> categories = [];
+
   Future<void> refreshData();
   Future<void> loadCategories();
   void goToAddCategoryPage();
@@ -15,11 +20,6 @@ abstract class AdminCategoriesController extends GetxController {
 }
 
 class AdminCategoriesControllerImp extends AdminCategoriesController {
-  final CategoriesData categoriesData = CategoriesData(Get.find<ApiService>());
-  StateRequest stateRequest = StateRequest.none;
-
-  List<CategoryModel> categories = [];
-
   @override
   void onInit() {
     super.onInit();
@@ -31,10 +31,6 @@ class AdminCategoriesControllerImp extends AdminCategoriesController {
     stateRequest = StateRequest.loading;
     update();
     await loadCategories();
-    if (stateRequest != StateRequest.success) {
-      update();
-      return;
-    }
     update();
   }
 
@@ -66,7 +62,7 @@ class AdminCategoriesControllerImp extends AdminCategoriesController {
       },
       (_) async {
         AdminDashboardControllerImp dashboardController = Get.find();
-        dashboardController.categories--;
+        dashboardController.totalCategories--;
         dashboardController.update();
         Get.snackbar(
           'نجاح',

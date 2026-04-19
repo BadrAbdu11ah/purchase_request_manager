@@ -13,6 +13,7 @@ abstract class AdminAddProductController extends GetxController {
   final CategoriesData categoriesData = CategoriesData(Get.find<ApiService>());
 
   late TextEditingController nameController;
+  late TextEditingController priceController;
   late TextEditingController unitController;
   late TextEditingController minLimitController;
   StateRequest stateRequest = StateRequest.none;
@@ -33,6 +34,7 @@ class AdminAddProductControllerImp extends AdminAddProductController {
     super.onInit();
     loadCategories();
     nameController = TextEditingController();
+    priceController = TextEditingController();
     unitController = TextEditingController();
     minLimitController = TextEditingController();
   }
@@ -44,6 +46,7 @@ class AdminAddProductControllerImp extends AdminAddProductController {
 
     final result = await productsData.addProduct(
       nameController.text,
+      priceController.text.isEmpty ? 0 : int.tryParse(priceController.text)!,
       selectedCategoryId == null ? null : int.tryParse(selectedCategoryId!),
       unitController.text,
       minLimitController.text,
@@ -63,7 +66,7 @@ class AdminAddProductControllerImp extends AdminAddProductController {
         controller.update();
 
         AdminDashboardControllerImp dashboardController = Get.find();
-        dashboardController.products++;
+        dashboardController.totalProducts++;
         dashboardController.update();
       },
     );

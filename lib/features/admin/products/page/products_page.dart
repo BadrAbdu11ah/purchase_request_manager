@@ -19,21 +19,25 @@ class AdminProductsPage extends GetView<AdminProductsControllerImp> {
       body: GetBuilder<AdminProductsControllerImp>(
         builder: (controller) => HandlingDataView(
           state: controller.stateRequest,
-          child: RefreshIndicator(
-            onRefresh: controller.refreshData,
-            child: ListView.builder(
-              physics: const AlwaysScrollableScrollPhysics(),
-              itemCount: controller.products.length,
-              itemBuilder: (context, index) {
-                final product = controller.products[index];
-                return CustomCardProduct(
-                  product: product,
-                  onEdit: () => controller.goToEditProductPage(product),
-                  onDelete: () => controller.deleteProduct(product.id),
-                );
-              },
-            ),
-          ),
+          child: controller.products.isEmpty
+              ? const Center(
+                  child: Text('لا توجد منتجات', style: TextStyle(fontSize: 20)),
+                )
+              : RefreshIndicator(
+                  onRefresh: controller.refreshData,
+                  child: ListView.builder(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    itemCount: controller.products.length,
+                    itemBuilder: (context, index) {
+                      final product = controller.products[index];
+                      return CustomCardProduct(
+                        product: product,
+                        onEdit: () => controller.goToEditProductPage(product),
+                        onDelete: () => controller.deleteProduct(product.id),
+                      );
+                    },
+                  ),
+                ),
         ),
       ),
     );

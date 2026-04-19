@@ -60,7 +60,7 @@ class AdminProductsControllerImp extends AdminProductsController {
       },
       (_) async {
         AdminDashboardControllerImp dashboardController = Get.find();
-        dashboardController.products--;
+        dashboardController.totalProducts--;
         dashboardController.update();
         Get.snackbar(
           'نجاح',

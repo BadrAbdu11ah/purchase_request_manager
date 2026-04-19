@@ -19,22 +19,26 @@ class AdminCategoriesPage extends GetView<AdminCategoriesControllerImp> {
       body: GetBuilder<AdminCategoriesControllerImp>(
         builder: (_) => HandlingDataView(
           state: controller.stateRequest,
-          child: RefreshIndicator(
-            onRefresh: controller.refreshData,
-            child: ListView.builder(
-              physics: const AlwaysScrollableScrollPhysics(),
-              itemCount: controller.categories.length,
-              itemBuilder: (context, index) {
-                final category = controller.categories[index];
-                return CustomCardCategory(
-                  name: category.name,
-                  productsCount: category.productsCount!,
-                  onEdit: () => controller.goToEditCategoryPage(category),
-                  onDelete: () => controller.deleteCategory(category.id),
-                );
-              },
-            ),
-          ),
+          child: controller.categories.isEmpty
+              ? const Center(
+                  child: Text('لا توجد أصناف', style: TextStyle(fontSize: 20)),
+                )
+              : RefreshIndicator(
+                  onRefresh: controller.refreshData,
+                  child: ListView.builder(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    itemCount: controller.categories.length,
+                    itemBuilder: (context, index) {
+                      final category = controller.categories[index];
+                      return CustomCardCategory(
+                        name: category.name,
+                        productsCount: category.productsCount!,
+                        onEdit: () => controller.goToEditCategoryPage(category),
+                        onDelete: () => controller.deleteCategory(category.id),
+                      );
+                    },
+                  ),
+                ),
         ),
       ),
     );

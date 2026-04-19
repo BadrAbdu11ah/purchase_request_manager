@@ -30,15 +30,15 @@ class AdminDashboardPage extends GetView<AdminDashboardControllerImp> {
                       physics: const NeverScrollableScrollPhysics(),
                       children: [
                         CustomCardCount(
-                          length: controller.products,
+                          length: controller.totalProducts,
                           title: "Products",
                         ),
                         CustomCardCount(
-                          length: controller.categories,
+                          length: controller.totalCategories,
                           title: "Categories",
                         ),
                         CustomCardCount(
-                          length: controller.orders,
+                          length: controller.totalOrders,
                           title: "Orders",
                         ),
                       ],

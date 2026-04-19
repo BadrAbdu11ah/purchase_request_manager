@@ -26,6 +26,7 @@ class ProductsData {
 
   Future<Either<StateRequest, ProductModel>> addProduct(
     String name,
+    int price,
     int? categoryId,
     String unit,
     String minLimit,
@@ -33,6 +34,7 @@ class ProductsData {
     final result = await apiService.post(ApiEndpoints.productStore, {
       "category_id": categoryId?.toString(),
       "name": name,
+      "price": price.toString(),
       "unit": unit,
       "min_limit": minLimit,
     });
@@ -51,12 +53,14 @@ class ProductsData {
   Future<Either<StateRequest, ProductModel>> editProducts(
     int id,
     String name,
+    int price,
     int? categoryId,
     String unit,
     String minLimit,
   ) async {
     final result = await apiService.post(ApiEndpoints.productUpdate(id), {
       'name': name.trim(),
+      'price': price.toString(),
       'category_id': categoryId?.toString(),
       'unit': unit.trim(),
       'min_limit': minLimit.trim(),

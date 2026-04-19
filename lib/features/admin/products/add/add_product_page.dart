@@ -16,7 +16,7 @@ class AdminAddProductPage extends GetView<AdminAddProductControllerImp> {
           state: controller.stateRequest,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Column(
+            child: ListView(
               children: [
                 TextField(
                   controller: controller.nameController,
@@ -24,6 +24,15 @@ class AdminAddProductPage extends GetView<AdminAddProductControllerImp> {
                     labelText: 'اسم المنتج',
                     border: OutlineInputBorder(),
                   ),
+                ),
+                SizedBox(height: 20),
+                TextField(
+                  controller: controller.priceController,
+                  decoration: InputDecoration(
+                    labelText: 'السعر',
+                    border: OutlineInputBorder(),
+                  ),
+                  keyboardType: TextInputType.number,
                 ),
                 SizedBox(height: 20),
                 InkWell(

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:purchase_request_manager/constant/api_endpoints.dart';
-import 'package:purchase_request_manager/features/user/auth/auth_controller.dart';
+import 'package:purchase_request_manager/features/auth/auth_controller.dart';
 import 'package:purchase_request_manager/services/api_service.dart';
 import 'package:purchase_request_manager/services/order_service.dart';
 

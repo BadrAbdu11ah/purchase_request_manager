@@ -38,7 +38,7 @@ class AdminAddCategoryControllerImp extends AdminAddCategoryController {
       controller.update();
 
       AdminDashboardControllerImp dashboardController = Get.find();
-      dashboardController.categories++;
+      dashboardController.totalCategories++;
       dashboardController.update();
     });
   }

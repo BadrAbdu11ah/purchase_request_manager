@@ -15,6 +15,7 @@ abstract class AdminEditProductController extends GetxController {
 
   late ProductModel product;
   late TextEditingController nameController;
+  late TextEditingController priceController;
   late TextEditingController unitController;
   late TextEditingController minLimitController;
   StateRequest stateRequest = StateRequest.none;
@@ -36,6 +37,7 @@ class AdminEditProductControllerImp extends AdminEditProductController {
     product = Get.arguments as ProductModel;
     loadCategories();
     nameController = TextEditingController(text: product.name);
+    priceController = TextEditingController(text: product.price.toString());
     unitController = TextEditingController(text: product.unit);
     minLimitController = TextEditingController(
       text: product.minLimit.toString(),
@@ -50,6 +52,7 @@ class AdminEditProductControllerImp extends AdminEditProductController {
     final result = await productsData.editProducts(
       product.id,
       nameController.text,
+      priceController.text.isEmpty ? 0 : int.tryParse(priceController.text)!,
       selectedCategoryId == null ? null : int.tryParse(selectedCategoryId!),
       unitController.text,
       minLimitController.text,
@@ -70,7 +73,8 @@ class AdminEditProductControllerImp extends AdminEditProductController {
         controller.update();
 
         AdminDashboardControllerImp dashboardController = Get.find();
-        dashboardController.products++;
+        // dashboardController.dashboardStats['total_products'] =
+        //     (dashboardController.dashboardStats['total_products'] ?? 0) + 1;
         dashboardController.update();
       },
     );

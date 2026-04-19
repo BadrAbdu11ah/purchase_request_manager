@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:dartz/dartz.dart';
 import 'package:purchase_request_manager/constant/api_endpoints.dart';
 import 'package:purchase_request_manager/core/class/state_request.dart';
-import 'package:purchase_request_manager/model/order_model.dart';
+import 'package:purchase_request_manager/model/order/order_model.dart';
+import 'package:purchase_request_manager/model/order/paginated_orders.dart';
 import 'package:purchase_request_manager/model/product_model.dart';
 import 'package:purchase_request_manager/services/api_service.dart';
 
@@ -23,14 +24,31 @@ class OrderService {
     });
   }
 
-  Future<Either<StateRequest, List<OrderModel>>> getOrders() async {
-    final result = await apiService.get(ApiEndpoints.orders);
-    return result.fold((failure) => Left(failure), (data) {
-      final raw = (data['data'] ?? []) as List<dynamic>;
-      final orders = raw
+  Future<Either<StateRequest, PaginatedOrders>> getOrders(int page) async {
+    // إرسال رقم الصفحة كمعامل في الطلب
+    final result = await apiService.get("${ApiEndpoints.orders}?page=$page");
+
+    return result.fold((failure) => Left(failure), (response) {
+      // الوصول للكائن الذي يحتوي على بيانات الترقيم
+      var paginationData = response['data'];
+
+      // استخراج القائمة الفعلية للطلبات
+      List rawList = paginationData['data'] ?? [];
+
+      // تحويل البيانات المستلمة إلى موديلات
+      final ordersList = rawList
           .map((item) => OrderModel.fromJson(item as Map<String, dynamic>))
           .toList();
-      return Right(orders);
+
+      // إرجاع كائن يحتوي على البيانات والترقيم معاً
+      return Right(
+        PaginatedOrders(
+          orders: ordersList,
+          currentPage: paginationData['current_page'],
+          lastPage: paginationData['last_page'],
+          total: paginationData['total'],
+        ),
+      );
     });
   }
 

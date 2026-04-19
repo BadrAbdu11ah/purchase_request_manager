@@ -10,26 +10,28 @@ import 'package:purchase_request_manager/features/admin/categories/add/add_categ
 import 'package:purchase_request_manager/features/admin/categories/edit/edit_category_page.dart';
 import 'package:purchase_request_manager/features/admin/dashboard/dashboard_binding.dart';
 import 'package:purchase_request_manager/features/admin/dashboard/dashboard_page.dart';
-import 'package:purchase_request_manager/features/admin/orders/binding/order_details_binding.dart';
-import 'package:purchase_request_manager/features/admin/orders/binding/orders_binding.dart';
-import 'package:purchase_request_manager/features/admin/orders/view/order_details_page.dart';
-import 'package:purchase_request_manager/features/admin/orders/view/orders_page.dart';
+import 'package:purchase_request_manager/features/admin/orders/add/add_orders_binding.dart';
+import 'package:purchase_request_manager/features/admin/orders/add/add_orders_page.dart';
+import 'package:purchase_request_manager/features/admin/orders/details/order_details_binding.dart';
+import 'package:purchase_request_manager/features/admin/orders/edit/edit_orders_binding.dart';
+import 'package:purchase_request_manager/features/admin/orders/edit/edit_orders_page.dart';
+import 'package:purchase_request_manager/features/admin/orders/page/orders_binding.dart';
+import 'package:purchase_request_manager/features/admin/orders/details/order_details_page.dart';
+import 'package:purchase_request_manager/features/admin/orders/page/orders_page.dart';
 import 'package:purchase_request_manager/features/admin/products/add/add_product_binding.dart';
 import 'package:purchase_request_manager/features/admin/products/edit/edit_product_binding.dart';
 import 'package:purchase_request_manager/features/admin/products/page/products_binding.dart';
 import 'package:purchase_request_manager/features/admin/products/add/add_product_page.dart';
 import 'package:purchase_request_manager/features/admin/products/edit/edit_product_page.dart';
 import 'package:purchase_request_manager/features/admin/products/page/products_page.dart';
-import 'package:purchase_request_manager/features/user/auth/binding/login_binding.dart';
-import 'package:purchase_request_manager/features/user/auth/binding/register_binding.dart';
-import 'package:purchase_request_manager/features/user/auth/binding/splash_binding.dart';
-import 'package:purchase_request_manager/features/user/auth/view/login_page.dart';
-import 'package:purchase_request_manager/features/user/auth/view/register_page.dart';
-import 'package:purchase_request_manager/features/user/auth/view/splash_page.dart';
-import 'package:purchase_request_manager/features/user/orders/binding/create_order_binding.dart';
-import 'package:purchase_request_manager/features/user/orders/binding/orders_binding.dart';
-import 'package:purchase_request_manager/features/user/orders/view/create_order_page.dart';
-import 'package:purchase_request_manager/features/user/orders/view/orders_page.dart';
+import 'package:purchase_request_manager/features/auth/login/login_binding.dart';
+import 'package:purchase_request_manager/features/auth/register/register_binding.dart';
+import 'package:purchase_request_manager/features/auth/splash/splash_binding.dart';
+import 'package:purchase_request_manager/features/auth/login/login_page.dart';
+import 'package:purchase_request_manager/features/auth/register/register_page.dart';
+import 'package:purchase_request_manager/features/auth/splash/splash_page.dart';
+import 'package:purchase_request_manager/features/user/home_binding.dart';
+import 'package:purchase_request_manager/features/user/home_page.dart';
 
 class AppRoute {
   static final List<GetPage> routes = [
@@ -39,15 +41,11 @@ class AppRoute {
       binding: SplashBinding(),
     ),
     GetPage(
-      name: AppRoutesConst.orders,
-      page: () => const OrdersPage(),
-      binding: OrdersBinding(),
+      name: AppRoutesConst.home,
+      page: () => const HomePage(),
+      binding: HomeBinding(),
     ),
-    GetPage(
-      name: AppRoutesConst.addOrder,
-      page: () => const CreateOrder(),
-      binding: CreateOrderBinding(),
-    ),
+    // Auth routes
     GetPage(
       name: AppRoutesConst.login,
       page: () => const LoginView(),
@@ -93,6 +91,16 @@ class AppRoute {
       name: AppRoutesConst.adminOrders,
       page: () => const AdminOrdersPage(),
       binding: AdminOrdersBinding(),
+    ),
+    GetPage(
+      name: AppRoutesConst.adminAddOrders,
+      page: () => const AdminAddOrdersPage(),
+      binding: AdminAddOrdersBinding(),
+    ),
+    GetPage(
+      name: AppRoutesConst.adminEditOrders,
+      page: () => const AdminEditOrdersPage(),
+      binding: AdminEditOrdersBinding(),
     ),
     GetPage(
       name: AppRoutesConst.adminOrderDetails,
