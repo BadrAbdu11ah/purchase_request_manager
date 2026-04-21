@@ -295,7 +295,7 @@ flutter test --coverage
 لأي استفسارات أو اقتراحات:
 
 - 📬 البريد الإلكتروني: Badrhaje2@gmail.com
-- 💼 LinkedIn: [Badr Haje](www.linkedin.com/in/badr-haje-21073a39b)
+- 💼 LinkedIn: [Badr Haje](https://www.linkedin.com/in/badr-haje-21073a39b)
 - 🐙 GitHub Frontend: [purchase_request_manager](https://github.com/BadrAbdu11ah/purchase_request_manager)
 - 🐙 GitHub Backend: [purchase-request-api](https://github.com/BadrAbdu11ah/purchase-request-api)
 
